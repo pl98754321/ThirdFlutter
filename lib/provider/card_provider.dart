@@ -24,7 +24,6 @@ class trancardProvider with ChangeNotifier {
           id: data.key,
         ),
       );
-      print("Data is  ${data["title"].toString()}");
     }
     _listcardprovider = listprepare;
     notifyListeners();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:real_firstprogram/provider/caed_provider.dart';
+import 'package:real_firstprogram/Route/CardPopupRout.dart';
+import 'package:real_firstprogram/provider/card_provider.dart';
 import 'package:real_firstprogram/provider/card_type.dart';
 
 //This is skeleton for Formscreen popup
@@ -153,6 +153,44 @@ class __FormtextfillState extends State<_Formtextfill> {
           ],
         )
       ],
+    );
+  }
+}
+
+/// Botton for homepage
+class Button extends StatelessWidget {
+  const Button({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          CardPopupRoute(
+            builder: (BuildContext context) {
+              return Formscreen();
+            },
+          ),
+        );
+      },
+      child: Hero(
+        tag: "formherotag2",
+        child: Padding(
+          padding: const EdgeInsets.all(32),
+          child: Material(
+            color: Colors.white,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Icon(
+                Icons.add,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

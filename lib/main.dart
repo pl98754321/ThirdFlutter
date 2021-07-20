@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:real_firstprogram/provider/caed_provider.dart';
+import 'package:real_firstprogram/provider/card_provider.dart';
+import 'package:real_firstprogram/provider/chat_provider.dart';
 import 'package:real_firstprogram/screen/home_screen.dart';
 
 void main() {
@@ -17,6 +18,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (BuildContext context) {
             return trancardProvider();
+          },
+        ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) {
+            return ChatProvider();
           },
         )
       ],
