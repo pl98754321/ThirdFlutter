@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:real_firstprogram/provider/card_provider.dart';
-import 'package:real_firstprogram/provider/card_type.dart';
-import 'package:real_firstprogram/screen/chat_screen.dart';
+import 'package:real_firstprogram/provider/people_provider.dart';
+import 'package:real_firstprogram/provider/people_type.dart';
+import 'package:real_firstprogram/provider/chat_provider.dart';
+import 'package:real_firstprogram/screen/chat/Chat_structure.dart';
 import 'form_screen.dart';
 
 class homescreen extends StatefulWidget {
@@ -44,21 +45,21 @@ class bodyhome extends StatefulWidget {
 class _bodyhomeState extends State<bodyhome> {
   @override
   void initState() {
-    Provider.of<trancardProvider>(context, listen: false).updatelist();
+    Provider.of<TranPeopleProvider>(context, listen: false).updatelist();
   }
 
   @override
   Widget build(BuildContext context) {
     return Consumer(
-      builder:
-          (BuildContext context, trancardProvider trancardPro, Widget? child) {
+      builder: (BuildContext context, TranPeopleProvider tranPeoplePro,
+          Widget? child) {
         return Card(
           elevation: 5,
           child: ListView.builder(
-              itemCount: trancardPro.data().length,
+              itemCount: tranPeoplePro.data().length,
               itemBuilder: (context, int index) {
-                card eachcard = trancardPro.data()[index];
-                return _ListEachcard(trancardPro, eachcard);
+                People eachPeople = tranPeoplePro.data()[index];
+                return _ListEachPeople(tranPeoplePro, eachPeople);
               }),
         );
       },
@@ -66,30 +67,32 @@ class _bodyhomeState extends State<bodyhome> {
   }
 }
 
-/// ListTile For Eachcard
+/// ListTile For EachPeople
 ///
-class _ListEachcard extends StatelessWidget {
-  card eachcard;
-  trancardProvider trancardPro;
-  _ListEachcard(this.trancardPro, this.eachcard);
+class _ListEachPeople extends StatelessWidget {
+  People eachPeople;
+  TranPeopleProvider tranPeoplePro;
+  _ListEachPeople(this.tranPeoplePro, this.eachPeople);
 
   Color bg = Colors.black;
   @override
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
+        Provider.of<TranChatProvider>(context, listen: false)
+            .updatelist(eachPeople.title);
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) {
-              return Chat_structure(trancardPro, eachcard);
+              return Chat_structure(tranPeoplePro, eachPeople);
             },
           ),
         );
       },
-      title: Text(eachcard.title),
-      subtitle: Text(eachcard.subtitle),
+      title: Text(eachPeople.title),
+      subtitle: Text(eachPeople.subtitle),
       leading: CircleAvatar(
-        child: Text(eachcard.icon_id.toString()),
+        child: Text(eachPeople.icon_id.toString()),
       ),
     );
   }

@@ -1,22 +1,21 @@
 import 'package:flutter/foundation.dart';
 import 'package:real_firstprogram/database/manageDB.dart';
-import 'package:real_firstprogram/provider/card_type.dart';
+import 'package:real_firstprogram/provider/people_type.dart';
 
-class trancardProvider with ChangeNotifier {
-  List<card> _listcardprovider = [];
-  manageDB db = manageDB("cardmain");
+class TranPeopleProvider with ChangeNotifier {
+  List<People> _listPeopleprovider = [];
+  manageDB db = manageDB("peoplemain");
 
   //getter
-  List<card> data() => _listcardprovider;
+  List<People> data() => _listPeopleprovider;
 
   //updatelist
   Future updatelist() async {
     var snapshot = await db.loaddata();
-    print(snapshot);
-    List<card> listprepare = [];
+    List<People> listprepare = [];
     for (var data in snapshot) {
       listprepare.add(
-        card(
+        People(
           title: data["title"].toString(),
           subtitle: data["subtitle"].toString(),
           icon_id: int.parse(data["icon_id"].toString()),
@@ -25,12 +24,12 @@ class trancardProvider with ChangeNotifier {
         ),
       );
     }
-    _listcardprovider = listprepare;
+    _listPeopleprovider = listprepare;
     notifyListeners();
   }
 
-  Future<void> addTo(card card) async {
-    await db.addtoDB(card.Tomap());
+  Future<void> addTo(People people) async {
+    await db.addtoDB(people.Tomap());
     await updatelist();
   }
 

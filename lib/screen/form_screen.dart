@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:real_firstprogram/Route/CardPopupRout.dart';
-import 'package:real_firstprogram/provider/card_provider.dart';
-import 'package:real_firstprogram/provider/card_type.dart';
+import 'package:real_firstprogram/provider/people_provider.dart';
+import 'package:real_firstprogram/provider/people_type.dart';
 
 //This is skeleton for Formscreen popup
 class Formscreen extends StatefulWidget {
@@ -52,10 +52,10 @@ class _Formtextfill extends StatefulWidget {
 
 class __FormtextfillState extends State<_Formtextfill> {
   InputDecoration _decorational(String labelText) => InputDecoration(
+        focusedBorder: InputBorder.none,
         focusColor: Colors.black,
-        labelText: labelText,
-        labelStyle: TextStyle(color: Colors.black),
-        hintText: "hint",
+        hintText: labelText,
+        hintStyle: TextStyle(color: Colors.black),
         icon: Icon(
           Icons.add,
           color: Colors.black,
@@ -74,6 +74,7 @@ class __FormtextfillState extends State<_Formtextfill> {
         TextFormField(
           controller: controllorTitle,
           decoration: _decorational("title"),
+          style: TextStyle(color: Colors.black),
           validator: (str) {
             if (str?.isEmpty ?? true) {
               return "FillTitle";
@@ -82,6 +83,7 @@ class __FormtextfillState extends State<_Formtextfill> {
           },
         ),
         TextFormField(
+          style: TextStyle(color: Colors.black),
           controller: controllorSubtitle,
           decoration: _decorational("subtitle"),
           validator: (str) {
@@ -134,10 +136,10 @@ class __FormtextfillState extends State<_Formtextfill> {
                       backgroundColor: MaterialStateProperty.all(Colors.black)),
                   onPressed: () {
                     print("add");
-                    trancardProvider provider =
-                        Provider.of<trancardProvider>(context, listen: false);
+                    TranPeopleProvider provider =
+                        Provider.of<TranPeopleProvider>(context, listen: false);
                     provider.addTo(
-                      card(
+                      People(
                           title: controllorTitle.text,
                           subtitle: controllorSubtitle.text,
                           icon_id: 0, //int.parse(controllorIconId.text),

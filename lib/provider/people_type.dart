@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class card {
+class People {
   String title, subtitle;
   DateTime date = DateTime.now();
   int id, icon_id;
-  card(
+  People(
       {required this.title,
       required this.subtitle,
       required this.icon_id,
