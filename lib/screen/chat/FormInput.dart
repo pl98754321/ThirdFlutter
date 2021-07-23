@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:real_firstprogram/api/api_management.dart';
 import 'package:real_firstprogram/provider/people_type.dart';
 import 'package:real_firstprogram/provider/chat_provider.dart';
 import 'package:real_firstprogram/provider/Chat_type.dart';
@@ -50,28 +51,31 @@ class _Input_chatState extends State<Input_chat> {
                 ),
               ),
             ),
-            controllerA.text != ""
+            !controllerA.text.isEmpty
                 ? IconButton(
                     onPressed: () {
-                      TranChatProvider provider =
-                          Provider.of<TranChatProvider>(context, listen: false);
-                      provider.addTo(
-                          chat: Chatdata(
-                              date: DateTime.now(),
-                              icon_id: 5,
-                              IsMe: 1,
-                              name: '',
-                              text: controllerA.text),
-                          dbname: widget.eachPeople.title);
-                      provider.addTo(
-                          chat: Chatdata(
-                              date: DateTime.now(),
-                              icon_id: 14,
-                              IsMe: 0,
-                              name: '',
-                              text: "Dont know"),
-                          dbname: widget.eachPeople.title);
-                      controllerA.text = "";
+                      setState(() async {
+                        TranChatProvider provider =
+                            Provider.of<TranChatProvider>(context,
+                                listen: false);
+                        provider.addTo(
+                            chat: Chatdata(
+                                date: DateTime.now(),
+                                icon_id: 5,
+                                IsMe: 1,
+                                name: '',
+                                text: controllerA.text),
+                            dbname: widget.eachPeople.title);
+                        controllerA.clear();
+                        provider.addTo(
+                            chat: Chatdata(
+                                date: DateTime.now(),
+                                icon_id: 14,
+                                IsMe: 0,
+                                name: '',
+                                text: await Randomword().getdata()),
+                            dbname: widget.eachPeople.title);
+                      });
                     },
                     icon: Icon(Icons.send, color: Colors.blue))
                 : IconButton(

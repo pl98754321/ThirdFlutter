@@ -76,7 +76,8 @@ class _ChatboxNOtIsme extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           eachchat.text,
-                          style: TextStyle(color: Colors.black, fontSize: 16),
+                          style: TextStyle(
+                              color: Colors.black, fontSize: textsize),
                         ),
                       ),
                     ),
@@ -91,6 +92,8 @@ class _ChatboxNOtIsme extends StatelessWidget {
     );
   }
 }
+
+double textsize = 20;
 
 //////////////////////////////////////
 class _ChatboxIsme extends StatelessWidget {
@@ -116,15 +119,22 @@ class _ChatboxIsme extends StatelessWidget {
                 width: 70,
               ),
               Expanded(
-                child: Material(
-                  color: Colors.greenAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(eachchat.text,
-                        style: TextStyle(color: Colors.black, fontSize: 16)),
-                  ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Material(
+                      color: Colors.greenAccent,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(eachchat.text,
+                            style: TextStyle(
+                                color: Colors.black, fontSize: textsize)),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

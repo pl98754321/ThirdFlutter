@@ -28,7 +28,7 @@ class Chat_structure extends StatelessWidget {
           Provider.of<TranChatProvider>(context, listen: false)
               .updatelist(eachPeople.title);
         },
-        label: Text("dddddasdasd"),
+        label: Text("Just Button"),
       ),
       appBar: AppBar(
         title: Text(eachPeople.title),
