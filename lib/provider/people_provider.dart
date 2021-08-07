@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:real_firstprogram/database/manageDB.dart';
-import 'package:real_firstprogram/provider/people_type.dart';
+import 'package:real_firstprogram/model/people_type.dart';
 
 class TranPeopleProvider with ChangeNotifier {
   List<People> _listPeopleprovider = [];

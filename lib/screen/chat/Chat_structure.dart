@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:real_firstprogram/provider/chat_provider.dart';
 import 'package:real_firstprogram/provider/people_provider.dart';
-import 'package:real_firstprogram/provider/people_type.dart';
+import 'package:real_firstprogram/model/people_type.dart';
 import 'FormInput.dart';
 import 'chat_body.dart';
 

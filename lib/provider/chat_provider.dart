@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:real_firstprogram/database/manageDB.dart';
-import 'package:real_firstprogram/provider/Chat_type.dart';
+import 'package:real_firstprogram/model/chat_type.dart';
 
 class TranChatProvider with ChangeNotifier {
   List<Chatdata> _ListChatProvider = [];
@@ -16,7 +16,7 @@ class TranChatProvider with ChangeNotifier {
   //updatelist
   Future updatelist(String dbname) async {
     var snapshot = await selectDB(dbname).loaddata();
-    print("dbname is ${dbname} snapshot is $snapshot");
+    print("dbname is ${dbname}");
     List<Chatdata> listprepare = [];
     for (var data in snapshot) {
       listprepare.add(

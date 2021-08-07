@@ -1,8 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:real_firstprogram/provider/Chat_type.dart';
+import 'package:real_firstprogram/model/chat_type.dart';
 import 'package:real_firstprogram/provider/chat_provider.dart';
-import 'package:real_firstprogram/provider/people_type.dart';
+import 'package:real_firstprogram/model/people_type.dart';
 
 class ChatBody extends StatefulWidget {
   People eachPeople;
@@ -13,15 +14,29 @@ class ChatBody extends StatefulWidget {
 }
 
 class _ChatBodyState extends State<ChatBody> {
+  int index = 0;
+  final _controller = ScrollController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    Provider.of<TranChatProvider>(context, listen: false)
+        .updatelist(widget.eachPeople.title);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer(
       builder:
           (BuildContext context, TranChatProvider chatProvider, Widget? child) {
         return ListView.builder(
+          physics: BouncingScrollPhysics(),
+          reverse: true,
+          controller: _controller,
           itemCount: chatProvider.data().length,
           itemBuilder: (BuildContext Context, int index) {
-            Chatdata eachchat = chatProvider.data()[index];
+            Chatdata eachchat =
+                chatProvider.data()[chatProvider.data().length - index - 1];
+            print("index = $index");
             if (eachchat.IsMe == 0) {
               return _ChatboxNOtIsme(
                 eachPeople: widget.eachPeople,
